@@ -1,6 +1,6 @@
 # Dots
 
-Managed using `GNU Stow` for `Termux v1.119+`
+Managed using `GNU Stow` for `Termux v0.119+`
 
 ### Applying
 ```sh
