@@ -1,0 +1,67 @@
+umask 033
+
+# Aliases
+
+alias nv="nvim"
+alias www="python -m http.server -d ."
+
+alias ..="cd .."
+alias ...="cd ../.."
+
+alias ls="eza --icons --color"
+alias la="eza -a --icons --color"
+alias lla="eza -la --icons --color"
+alias tree="eza -T --icons --color"
+
+alias fetch="clear && echo && fastfetch"
+
+alias ff='nvim -c ":Oil"'
+alias gg='nvim -c ":Neogit"'
+
+alias gl='glab'
+
+# Exports
+
+eval `ssh-agent -s` &>/dev/null
+export GPG_TTY=$(tty)
+
+export EDITOR="nvim"
+export CC="clang"
+
+export MANPATH="$PREFIX/share/man:$HOME/.local/share/man"
+export GOPATH="$HOME/.local/share/go"
+export NODE_PATH="$PREFIX/lib/node_modules:$HOME/.pnpm-store"
+
+export PATH="$GOPATH/bin:$HOME/.local/bin:$PATH"
+
+export TZ="Asia/Jakarta"
+
+export PNPM_HOME="$HOME/.pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Functions
+
+crb () {
+  if [ $(pwd) != "$HOME" ]; then
+    echo "You must run this command in \$HOME dir."
+  else
+    tar -I "zstdmt -T0 -9" \
+      -cvf $TMPDIR/home.tar.zst \
+      --exclude-ignore-recursive=$HOME/.ignore \
+      .
+  fi
+}
+
+rsy () {
+  rsync -Pzauvh --chmod="Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r" $@
+}
+
+# Keymaps
+
+bindkey "^[[H" beginning-of-line
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[[4~" end-of-line

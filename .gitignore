@@ -1,0 +1,5 @@
+dot-config/glab-cli
+dot-config/nvim/snippets
+dot-termux/shell
+dot-termux/font*
+*.old/
