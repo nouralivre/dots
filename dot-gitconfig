@@ -3,3 +3,8 @@
 [user]
 	name = Noirelle
 	email = nouralivre@gmail.com
+	signingkey = 39E3AE661BFA556F
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
